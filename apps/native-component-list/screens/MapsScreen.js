@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { MapView } from 'expo';
 import Layout from '../constants/Layout';
 import ListButton from '../components/ListButton';
@@ -79,7 +79,11 @@ export default class MapsScreen extends React.Component {
 
   _animateToRandomViewingAngle = () => {
     if (this._mapView) {
-      this._mapView.animateToViewingAngle(getRandomFloat(0, 90));
+      if (Platform.OS === 'ios' && this.state.isGoogleMap) {
+        alert('animateToViewingAngle is not currently supported with Google Maps on iOS');
+      } else {
+        this._mapView.animateToViewingAngle(getRandomFloat(0, 90));
+      }
     }
   };
 

@@ -96,8 +96,9 @@ public class ActionObject {
     this.isAuthenticationRequired = (Boolean)map.get("isAuthenticationRequired");
     this.containTextInput = (map.get("textInput") != null);
     if (this.containTextInput) {
-      this.placeholder = (String)map.get("placeholder");
-      this.submitButtonTitle = (String)map.get("submitButtonTitle");
+      HashMap<String, Object> subMap = (HashMap<String, Object>) map.get("textInput");
+      this.placeholder = (String)subMap.get("placeholder");
+      this.submitButtonTitle = (String)subMap.get("submitButtonTitle");
     }
   }
 }

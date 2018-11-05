@@ -1,5 +1,6 @@
 package versioned.host.exp.exponent.modules.api.notifications;
 
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.arch.persistence.room.Room;
 import android.content.Context;
@@ -48,6 +49,9 @@ public class NotificationActionCenter {
 
   public synchronized static void setCategory(String categoryId, NotificationCompat.Builder builder, Context context, IntentProvider intentProvider) {
     throwExceptionIfOnMainThread();
+
+    // Because expo have ongoing notification we have to change priority in order to show up buttons
+    builder.setPriority(Notification.PRIORITY_MAX);
 
     SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
     Set<String> actions = sharedPreferences.getStringSet(categoryId, null);

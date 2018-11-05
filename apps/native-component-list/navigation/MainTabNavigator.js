@@ -42,8 +42,7 @@ import ReactNativeCoreScreen from '../screens/ReactNativeCoreScreen';
 import TextToSpeechScreen from '../screens/TextToSpeechScreen';
 import ScreenOrientationScreen from '../screens/ScreenOrientationScreen';
 import SecureStoreScreen from '../screens/SecureStoreScreen';
-import SVGScreen from '../screens/SVG/SVGScreen';
-import SVGExampleScreen from '../screens/SVG/SVGExampleScreen';
+import SVGScreen from '../screens/SVGScreen';
 import LocationScreen from '../screens/LocationScreen';
 import LottieScreen from '../screens/LottieScreen';
 import MapsScreen from '../screens/MapsScreen';
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
 const StackConfig = {
   cardStyle: styles.card,
   // headerTransitionPreset: 'uikit',
-  defaultNavigationOptions: () => ({
+  navigationOptions: () => ({
     headerStyle: styles.header,
     headerTintColor: Colors.tintColor,
     headerTitleStyle: styles.headerTitle,
@@ -115,7 +114,6 @@ const ExpoComponentsStackNavigator = createStackNavigator(
     Gif: { screen: GifScreen },
     FacebookAds: { screen: FacebookAdsScreen },
     SVG: { screen: SVGScreen },
-    SVGExample: { screen: SVGExampleScreen },
     LinearGradient: { screen: LinearGradientScreen },
     Lottie: { screen: LottieScreen },
     Maps: { screen: MapsScreen },
@@ -201,7 +199,7 @@ const MainTabNavigator = createTabNavigator(
     ReactNativeCore: { screen: ReactNativeCoreStackNavigator },
   },
   {
-    defaultNavigationOptions: ({ navigation }) => {
+    navigationOptions: ({ navigation }) => {
       let tabBarLabel;
       const { routeName } = navigation.state;
       if (routeName === 'ReactNativeCore') {

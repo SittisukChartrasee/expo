@@ -32,7 +32,7 @@ export default class UserNotificationsScreen extends React.Component {
       isAuthenticationRequired: false,
       textInput: {
         submitButtonTitle: 'button_name',
-        placeholder: 'default text',
+        placeholder: 'Enter your text here',
       },
     };
 
@@ -111,6 +111,7 @@ export default class UserNotificationsScreen extends React.Component {
           hello: 'there',
           future: 'self',
         },
+        categoryId: 'super-category',
       },
       {
         time: new Date().getTime() + 10000,

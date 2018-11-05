@@ -25,7 +25,6 @@ import {
   WebView,
 } from 'react-native';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
-import { ScrollView as NavigationScrollView } from 'react-navigation';
 
 import { Colors, Layout } from '../constants';
 import ModalExample from './ModalExample';
@@ -108,7 +107,6 @@ export default class ReactNativeCoreScreen extends React.Component {
             <RefreshControl refreshing={this.state.isRefreshing} onRefresh={this._onRefresh} />
           }
           contentContainerStyle={{ backgroundColor: '#fff' }}
-          renderScrollComponent={props => <NavigationScrollView {...props} />}
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
           renderSectionHeader={this._renderSectionHeader}
@@ -406,7 +404,7 @@ export default class ReactNativeCoreScreen extends React.Component {
 class DatePickerExample extends React.Component {
   state = {
     date: new Date(),
-    timeZoneOffsetInHours: (-1 * new Date().getTimezoneOffset()) / 60,
+    timeZoneOffsetInHours: -1 * new Date().getTimezoneOffset() / 60,
   };
 
   render() {
