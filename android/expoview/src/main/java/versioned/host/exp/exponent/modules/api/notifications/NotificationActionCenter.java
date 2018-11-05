@@ -51,6 +51,7 @@ public class NotificationActionCenter {
     throwExceptionIfOnMainThread();
 
     // Because expo have ongoing notification we have to change priority in order to show up buttons
+    // We could also remove it and let users know about this problem in docs
     builder.setPriority(Notification.PRIORITY_MAX);
 
     SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
@@ -74,7 +75,7 @@ public class NotificationActionCenter {
     intent.putExtra("actionType", actionId);
     PendingIntent pendingIntent = PendingIntent.getActivity(context, UUID.randomUUID().hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-    NotificationCompat.Action.Builder actionBuilder = new NotificationCompat.Action.Builder(android.R.drawable.sym_def_app_icon,
+    NotificationCompat.Action.Builder actionBuilder = new NotificationCompat.Action.Builder(0,
         actionObject.getButtonTitle(),
         pendingIntent
     );
