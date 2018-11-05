@@ -5,6 +5,7 @@ package host.exp.exponent.kernel;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
+import android.app.NotificationManager;
 import android.app.RemoteInput;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -61,6 +62,7 @@ import host.exp.exponent.experience.BaseExperienceActivity;
 import host.exp.exponent.experience.ExperienceActivity;
 import host.exp.exponent.experience.HomeActivity;
 import host.exp.exponent.notifications.ExponentNotification;
+import host.exp.exponent.notifications.ExponentNotificationManager;
 import host.exp.expoview.BuildConfig;
 import host.exp.exponent.Constants;
 import host.exp.exponent.ExponentManifest;
@@ -529,6 +531,8 @@ public class Kernel extends KernelInterface {
         exponentNotification.addActionType(actionType);
         if (inputText != null) {
           exponentNotification.addInputText(inputText);
+          ExponentNotificationManager manager = new ExponentNotificationManager(mContext);
+          manager.cancel( exponentNotification.experienceId, exponentNotification.notificationId);
         }
         openExperience(new KernelConstants.ExperienceOptions(notificationManifestUrl, intentUri == null ? notificationManifestUrl : intentUri, notification, exponentNotification));
         return;
