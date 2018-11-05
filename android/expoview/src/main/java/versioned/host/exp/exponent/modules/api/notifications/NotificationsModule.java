@@ -236,8 +236,6 @@ public class NotificationsModule extends ReactContextBaseJavaModule {
 
     details.put("data", hashMap);
 
-
-
     try {
       experienceId = mManifest.getString(ExponentManifest.MANIFEST_ID_KEY);
       details.put("experienceId", experienceId);

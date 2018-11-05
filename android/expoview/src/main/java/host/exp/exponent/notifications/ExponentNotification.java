@@ -18,7 +18,7 @@ public class ExponentNotification {
   public final boolean isMultiple;
   public final boolean isRemote;
   public String actionType;
-  public  String inputText;
+  public String inputText;
 
   public ExponentNotification(final String experienceId, final String body, final int notificationId, final boolean isMultiple, final boolean isRemote) {
     this.experienceId = experienceId;
@@ -27,8 +27,6 @@ public class ExponentNotification {
     this.isMultiple = isMultiple;
     this.isRemote = isRemote;
   }
-
-
 
   public static ExponentNotification fromJSONObjectString(final String json) {
     if (json == null) {

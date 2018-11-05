@@ -26,7 +26,7 @@ public class NotificationActionCenter {
   private static ActionDatabase db;
   private static final String DATABASE_NAME = "expo.notification.action";
 
-  public synchronized static void put(String categoryId, ArrayList<HashMap<String, Object>> actions, Context context) { // collapse textInput
+  public synchronized static void put(String categoryId, ArrayList<HashMap<String, Object>> actions, Context context) {
     throwExceptionIfOnMainThread();
 
     SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
@@ -51,7 +51,6 @@ public class NotificationActionCenter {
     throwExceptionIfOnMainThread();
 
     // Because expo have ongoing notification we have to change priority in order to show up buttons
-    // We could also remove it and let users know about this problem in docs
     builder.setPriority(Notification.PRIORITY_MAX);
 
     SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE);
