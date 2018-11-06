@@ -67,13 +67,13 @@ public class NotificationsModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void createCategory(final String categoryIdParam, final ReadableArray actions, final Promise promise) {
-    String categoryId = getScopedIdIfDateached(categoryIdParam);
+    String categoryId = getScopedIdIfNotDetached(categoryIdParam);
     ArrayList<HashMap<String, Object>> scopedActions = new ArrayList<>();
 
     for(Object actionObject : actions.toArrayList()) {
       HashMap<String, Object> action = (HashMap<String, Object>)actionObject;
       String oldActionId = (String)action.get("actionId");
-      action.put("actionId", getScopedIdIfDateached(oldActionId));
+      action.put("actionId", getScopedIdIfNotDetached(oldActionId));
       scopedActions.add(action);
     }
 
@@ -81,7 +81,7 @@ public class NotificationsModule extends ReactContextBaseJavaModule {
     promise.resolve(null);
   }
 
-  private String getScopedIdIfDateached(String categoryId) {
+  private String getScopedIdIfNotDetached(String categoryId) {
     if (!Constants.isDetached()) {
       try {
         String experienceId = mManifest.getString(ExponentManifest.MANIFEST_ID_KEY);
@@ -231,7 +231,7 @@ public class NotificationsModule extends ReactContextBaseJavaModule {
 
     HashMap<String, Object> hashMap = ((ReadableNativeMap) data).toHashMap();
     if (hashMap.containsKey("categoryId")) {
-      hashMap.put("categoryId", getScopedIdIfDateached((String) hashMap.get("categoryId")));
+      hashMap.put("categoryId", getScopedIdIfNotDetached((String) hashMap.get("categoryId")));
     }
 
     details.put("data", hashMap);
@@ -299,7 +299,7 @@ public class NotificationsModule extends ReactContextBaseJavaModule {
 
     HashMap<String, Object> hashMap = ((ReadableNativeMap) data).toHashMap();
     if (hashMap.containsKey("categoryId")) {
-      hashMap.put("categoryId", getScopedIdIfDateached((String)hashMap.get("categoryId")));
+      hashMap.put("categoryId", getScopedIdIfNotDetached((String)hashMap.get("categoryId")));
     }
 
     NotificationHelper.scheduleLocalNotification(
